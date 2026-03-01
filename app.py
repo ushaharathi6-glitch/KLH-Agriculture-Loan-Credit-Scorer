@@ -12,21 +12,29 @@ def home():
 # PREDICT ROUTE
 @app.route("/predict", methods=["POST"])
 def predict():
-    data = request.json
+    try:
+        data = request.get_json()
 
-    income = data.get("income", 0)
-    land = data.get("landSize", 0)
+        if not data:
+            return jsonify({"error": "No data received"}), 400
 
-    credit_score = min(100, int((income / 10000) + (land * 2)))
-    eligible_loan = int(income * 2)
+        income = float(data.get("income", 0))
+        land = float(data.get("landSize", 0))
 
-    return jsonify({
-        "credit_score": credit_score,
-        "eligible_loan": eligible_loan
-    })
+        credit_score = min(100, int((income / 10000) + (land * 2)))
+        eligible_loan = int(income * 2)
+
+        return jsonify({
+            "credit_score": credit_score,
+            "eligible_loan": eligible_loan
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 import os
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
