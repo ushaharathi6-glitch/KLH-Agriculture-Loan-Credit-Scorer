@@ -5,4 +5,5 @@ xgboost
 matplotlib
 joblib
 flask
+streamlit
 flask-cors
