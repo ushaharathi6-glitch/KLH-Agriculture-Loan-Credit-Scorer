@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Rin Mulyankan Portal | किसान ऋण मूल्यांकन पोर्टल</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+
+<body>
+
+    <div class="tricolor-strip"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-top">
+            <!-- SVG Emblem approximation -->
+            <svg class="emblem" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="36" cy="36" r="34" fill="#0a2342" stroke="#C8991A" stroke-width="2.5" />
+                <circle cx="36" cy="36" r="18" fill="none" stroke="#FF9933" stroke-width="1.5" />
+                <circle cx="36" cy="36" r="4" fill="#FF9933" />
+                <!-- Ashoka wheel spokes -->
+                <g stroke="#FF9933" stroke-width="1">
+                    <line x1="36" y1="18" x2="36" y2="54" />
+                    <line x1="18" y1="36" x2="54" y2="36" />
+                    <line x1="23.5" y1="23.5" x2="48.5" y2="48.5" />
+                    <line x1="48.5" y1="23.5" x2="23.5" y2="48.5" />
+                    <line x1="19.2" y1="29" x2="52.8" y2="43" />
+                    <line x1="29" y1="19.2" x2="43" y2="52.8" />
+                    <line x1="52.8" y1="29" x2="19.2" y2="43" />
+                    <line x1="43" y1="19.2" x2="29" y2="52.8" />
+                </g>
+                <text x="36" y="65" text-anchor="middle" fill="#C8991A" font-size="5.5" font-family="serif"
+                    font-weight="bold">GOVT. OF INDIA</text>
+            </svg>
+
+            <div class="header-titles">
+                <div class="ministry-name">Ministry of Agriculture & Farmers' Welfare · Government of India</div>
+                <div class="portal-title-en">Kisan Rin Mulyankan Portal</div>
+                <div class="portal-title-hi">किसान ऋण मूल्यांकन पोर्टल — Agricultural Loan Credit Assessment System
+                </div>
+            </div>
+
+            <div class="header-badges">
+                <div class="badge">🔒 Secure · SSL Encrypted</div>
+                <div class="badge">PM-KISAN Integrated</div>
+                <div class="badge">NABARD Certified Algorithm</div>
+            </div>
+        </div>
+
+        <nav class="header-nav">
+            <div class="nav-item active">🏠 Home</div>
+            <div class="nav-item">📋 Apply for Loan</div>
+            <div class="nav-item">📊 Track Application</div>
+            <div class="nav-item">🌾 Kisan Portal</div>
+            <div class="nav-item">📞 Helpline: 1800-180-1551</div>
+        </nav>
+    </header>
+
+    <!-- HERO BAND -->
+    <div class="hero-band">
+        <div class="hero-text">
+            <h2>🌾 Agricultural Credit Trust Score Evaluation</h2>
+            <p>Enter your farm details to instantly receive your AI-powered loan eligibility assessment. This system
+                uses non-traditional indicators — soil health, rainfall, land productivity, and farm income — to give
+                every farmer a fair evaluation.</p>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-box">
+                <div class="stat-num">₹3.6L Cr</div>
+                <div class="stat-label">Loans Disbursed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">7.2 Cr</div>
+                <div class="stat-label">Farmers Assessed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">92%</div>
+                <div class="stat-label">Accuracy Rate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-container">
+
+        <!-- FORM -->
+        <div class="form-card">
+            <div class="card-header">
+                <div class="card-header-icon">📝</div>
+                <div>
+                    <h3>Farmer Information & Farm Details</h3>
+                    <p>All fields are required · Data encrypted end-to-end · Not stored without consent</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="loanForm" novalidate>
+
+                    <!-- SECTION 1: FARMER INFO -->
+                    <div class="section-label">
+                        <span class="section-icon">👤</span>
+                        <span>Farmer Identity</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Farmer Name <span class="required">*</span>
+                                <span class="hi">किसान का नाम</span>
+                            </label>
+                            <input type="text" id="farmerName" placeholder="e.g. Ramesh Kumar Yadav" required>
+                        </div>
+                        <div class="form-group">
+                            <label>State / Region <span class="required">*</span>
+                                <span class="hi">राज्य</span>
+                            </label>
+                            <select id="state" required>
+                                <option value="">-- Select State --</option>
+                                <option>Andhra Pradesh</option>
+                                <option>Bihar</option>
+                                <option>Gujarat</option>
+                                <option>Haryana</option>
+                                <option>Jharkhand</option>
+                                <option>Karnataka</option>
+                                <option>Madhya Pradesh</option>
+                                <option>Maharashtra</option>
+                                <option>Odisha</option>
+                                <option>Punjab</option>
+                                <option>Rajasthan</option>
+                                <option>Tamil Nadu</option>
+                                <option>Telangana</option>
+                                <option>Uttar Pradesh</option>
+                                <option>West Bengal</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Farm Size (Acres) <span class="required">*</span>
+                                <span class="hi">खेत का क्षेत्रफल (एकड़)</span>
+                            </label>
+                            <input type="number" id="farmSize" placeholder="e.g. 5" min="0.5" max="500" step="0.5"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label>Years of Farming <span class="required">*</span>
+                                <span class="hi">खेती के वर्ष</span>
+                            </label>
+                            <input type="number" id="yearsfarming" placeholder="e.g. 15" min="1" max="60" required>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: SOIL HEALTH -->
+                    <div class="section-label">
+                        <span class="section-icon">🌱</span>
+                        <span>Soil Health Indicators</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Soil Type <span class="required">*</span>
+                                <span class="hi">मिट्टी का प्रकार</span>
+                            </label>
+                            <select id="soilType" required>
+                                <option value="">-- Select Soil Type --</option>
+                                <option value="90">Alluvial (उपजाऊ जलोढ़)</option>
+                                <option value="85">Black / Regur (काली मिट्टी)</option>
+                                <option value="75">Red & Laterite (लाल मिट्टी)</option>
+                                <option value="65">Sandy Loam (रेतीली दोमट)</option>
+                                <option value="55">Desert / Arid (रेगिस्तानी)</option>
+                                <option value="50">Saline / Alkaline (खारी मिट्टी)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Soil pH Level <span class="required">*</span>
+                                <span class="hi">मिट्टी का pH</span>
+                            </label>
+                            <input type="number" id="soilPH" placeholder="e.g. 6.5" min="3" max="10" step="0.1"
+                                required>
+                            <span class="field-hint">Ideal: 6.0 – 7.5 | Soil Health Card मूल्य</span>
+                        </div>
+                        <div class="form-group full">
+                            <label>Organic Matter Content (%) <span class="required">*</span>
+                                <span class="hi">जैविक सामग्री प्रतिशत</span>
+                            </label>
+                            <div class="slider-wrap">
+                                <div class="slider-row">
+                                    <input type="range" id="organicMatter" min="0" max="8" step="0.1" value="2"
+                                        oninput="updateSlider(this, '%')">
+                                    <div class="slider-val" id="organicMatterVal">2.0%</div>
+                                </div>
+                                <div class="slider-labels"><span>0% (Poor)</span><span>4% (Good)</span><span>8%
+                                        (Excellent)</span></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Soil Test (Years ago) <span class="required">*</span></label>
+                            <select id="soilTest" required>
+                                <option value="100">Within 1 year</option>
+                                <option value="80">1–2 years ago</option>
+                                <option value="60">2–3 years ago</option>
+                                <option value="40">More than 3 years</option>
+                                <option value="20">Never tested</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Soil Erosion Level</label>
+                            <select id="soilErosion">
+                                <option value="100">None</option>
+                                <option value="75">Mild</option>
+                                <option value="50">Moderate</option>
+                                <option value="25">Severe</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3: RAINFALL -->
+                    <div class="section-label">
+                        <span class="section-icon">🌧️</span>
+                        <span>Rainfall & Water Availability</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Annual Rainfall (mm) <span class="required">*</span>
+                                <span class="hi">वार्षिक वर्षा</span>
+                            </label>
+                            <input type="number" id="rainfall" placeholder="e.g. 800" min="100" max="4000" required>
+                            <span class="field-hint">India avg: 1187mm | Check district records</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Rainfall Variability <span class="required">*</span>
+                                <span class="hi">वर्षा की अनिश्चितता</span>
+                            </label>
+                            <select id="rainfallVariability" required>
+                                <option value="95">Very Stable (±10%)</option>
+                                <option value="80">Stable (±20%)</option>
+                                <option value="60">Moderate (±30%)</option>
+                                <option value="40">High (±40%)</option>
+                                <option value="20">Very High (±50%+)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Irrigation Access <span class="required">*</span>
+                                <span class="hi">सिंचाई सुविधा</span>
+                            </label>
+                            <select id="irrigation" required>
+                                <option value="100">Assured (Canal/Drip)</option>
+                                <option value="80">Borewell / Tubewell</option>
+                                <option value="60">Rainwater Harvesting</option>
+                                <option value="30">Rain-fed Only</option>
+                                <option value="10">No Irrigation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Drought Occurrences (Last 5 yrs)</label>
+                            <select id="drought">
+                                <option value="100">None</option>
+                                <option value="75">1 occurrence</option>
+                                <option value="50">2 occurrences</option>
+                                <option value="25">3 or more</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 4: PRODUCTIVITY -->
+                    <div class="section-label">
+                        <span class="section-icon">🌾</span>
+                        <span>Agricultural Land Productivity</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Primary Crop <span class="required">*</span>
+                                <span class="hi">मुख्य फसल</span>
+                            </label>
+                            <select id="primaryCrop" required>
+                                <option value="">-- Select Crop --</option>
+                                <option value="90">Wheat (गेहूँ)</option>
+                                <option value="85">Rice / Paddy (धान)</option>
+                                <option value="80">Sugarcane (गन्ना)</option>
+                                <option value="78">Cotton (कपास)</option>
+                                <option value="75">Maize (मक्का)</option>
+                                <option value="85">Horticulture/Vegetables</option>
+                                <option value="70">Pulses (दालें)</option>
+                                <option value="65">Oilseeds (तिलहन)</option>
+                                <option value="60">Millets (बाजरा/ज्वार)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Avg Yield (Quintals/Acre)</label>
+                            <input type="number" id="yield" placeholder="e.g. 18" min="1" max="200" step="0.5">
+                        </div>
+                        <div class="form-group full">
+                            <label>Land Productivity Score (Self Assessment) <span class="required">*</span>
+                                <span class="hi">भूमि उत्पादकता (1–10)</span>
+                            </label>
+                            <div class="slider-wrap">
+                                <div class="slider-row">
+                                    <input type="range" id="productivity" min="1" max="10" step="1" value="5"
+                                        oninput="updateSlider(this, '/10')">
+                                    <div class="slider-val" id="productivityVal">5/10</div>
+                                </div>
+                                <div class="slider-labels"><span>1 (Very Low)</span><span>5 (Average)</span><span>10
+                                        (Excellent)</span></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Crop Diversification</label>
+                            <select id="diversification">
+                                <option value="100">3+ crops / Mixed farming</option>
+                                <option value="75">2 crops</option>
+                                <option value="50">Single crop</option>
+                                <option value="30">Monoculture only</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Crop Insurance Coverage</label>
+                            <select id="insurance">
+                                <option value="100">Fully insured (PMFBY)</option>
+                                <option value="70">Partially insured</option>
+                                <option value="30">Not insured</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 5: PROFITABILITY -->
+                    <div class="section-label">
+                        <span class="section-icon">💰</span>
+                        <span>Farm Profitability & Income</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Annual Farm Income (₹) <span class="required">*</span>
+                                <span class="hi">वार्षिक आय</span>
+                            </label>
+                            <input type="number" id="farmIncome" placeholder="e.g. 180000" min="10000" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Existing Loan Amount (₹)</label>
+                            <input type="number" id="existingLoan" placeholder="0 if none" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Loan Repayment History</label>
+                            <select id="repayment">
+                                <option value="100">Excellent (No defaults)</option>
+                                <option value="75">Good (1-2 delays)</option>
+                                <option value="50">Fair (Restructured once)</option>
+                                <option value="20">Poor (Multiple defaults)</option>
+                                <option value="80">No previous loan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Income Trend (Last 3 years)</label>
+                            <select id="incomeTrend">
+                                <option value="100">Growing steadily</option>
+                                <option value="75">Stable</option>
+                                <option value="40">Declining</option>
+                                <option value="20">Highly volatile</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Non-Farm Income <span class="hi">अन्य आय स्रोत</span></label>
+                            <select id="nonFarmIncome">
+                                <option value="80">Yes (animal husbandry, etc.)</option>
+                                <option value="50">Partial (occasional labour)</option>
+                                <option value="20">None</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Purpose of Loan <span class="required">*</span></label>
+                            <select id="loanPurpose" required>
+                                <option value="">-- Select Purpose --</option>
+                                <option value="95">Seeds & Fertilizers</option>
+                                <option value="90">Farm Equipment</option>
+                                <option value="88">Irrigation Infrastructure</option>
+                                <option value="85">Crop storage / Silo</option>
+                                <option value="80">Land Development</option>
+                                <option value="70">Working Capital</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="submit-section">
+                        <button type="submit" class="btn-primary">
+                            🔍 Calculate Trust Score & Loan Amount
+                        </button>
+                        <button type="button" class="btn-reset" onclick="resetForm()">↺ Reset</button>
+                    </div>
+
+                    <p class="disclaimer">
+                        🔒 This assessment is for indicative purposes only. Final loan sanction is subject to bank
+                        verification, field inspection, and applicable government scheme guidelines. Data processed
+                        under IT Act 2000.
+                    </p>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+
+            <!-- RESULT CARD -->
+            <div class="result-card" id="resultCard">
+                <div class="result-header">
+                    <span>📊</span>
+                    <h3>Credit Assessment Result</h3>
+                </div>
+                <div class="result-body" id="resultBody">
+                    <div style="text-align:center; padding: 40px 20px; color: #8a9ab8;">
+                        <div style="font-size: 48px; margin-bottom: 12px;">🌾</div>
+                        <div
+                            style="font-family: 'EB Garamond', serif; font-size: 18px; color: var(--navy); margin-bottom: 8px;">
+                            Awaiting Assessment</div>
+                        <div style="font-size: 13px; line-height: 1.5;">Fill in your farm details and click
+                            <strong>"Calculate Trust Score"</strong> to receive your personalized loan eligibility
+                            report.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCHEME CARD -->
+            <div class="scheme-card">
+                <h4>🏛️ Applicable Government Schemes</h4>
+                <span class="scheme-tag">PM-KISAN</span>
+                <span class="scheme-tag">KCC</span>
+                <span class="scheme-tag">PMFBY</span>
+                <span class="scheme-tag">AIF</span>
+                <span class="scheme-tag">NABARD</span>
+                <div style="font-size: 12.5px; color: var(--text-mid); line-height: 1.6; margin-top: 8px;">
+                    Your loan assessment may qualify under <strong>Kisan Credit Card (KCC)</strong>, <strong>Agriculture
+                        Infrastructure Fund</strong>, or <strong>NABARD refinancing schemes</strong>. Banks are directed
+                    to consider Trust Scores under RBI's Priority Sector Lending norms.
+                </div>
+            </div>
+
+            <!-- INFO CARD -->
+            <div class="info-card">
+                <h4>ℹ️ How Trust Score Works</h4>
+                <div class="info-item">
+                    <span class="info-icon">🌱</span>
+                    <span><strong>Soil Health (25%)</strong> — pH, organic matter, erosion risk, and soil test recency
+                        determine land viability.</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🌧️</span>
+                    <span><strong>Rainfall (20%)</strong> — Stable rainfall & irrigation access reduces crop failure
+                        risk for lenders.</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🌾</span>
+                    <span><strong>Productivity (25%)</strong> — Crop yield, diversification, and land output history
+                        signal farming capability.</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">💰</span>
+                    <span><strong>Profitability (30%)</strong> — Income stability, repayment history, and debt-to-income
+                        ratio are key credit signals.</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">🔍 Evaluating Farm Data...</div>
+        <div class="loading-sub">Running XGBoost Credit Model · Calculating Trust Score</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <strong>Kisan Rin Mulyankan Portal</strong> · Ministry of Agriculture & Farmers' Welfare · Government of
+        India<br>
+        © 2026 · National Informatics Centre (NIC) · All rights reserved<br>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Screen Reader</a>
+            <a href="#">Contact Us</a>
+            <a href="#">RTI</a>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
