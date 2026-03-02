@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 CORS(app)
 
 # ROUTE FOR FRONTEND
@@ -37,5 +37,6 @@ import os
 import os
 port = int(os.environ.get("PORT", 10000))
 app.run(host="0.0.0.0", port=port)
+
 
 
